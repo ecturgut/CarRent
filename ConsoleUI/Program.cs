@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Concrete;
+using DataAccess.Concrete.InMemory;
+using System;
 
 namespace ConsoleUI
 {
@@ -6,7 +8,13 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CarsManager carsManager = new CarsManager(new InMemoryCarsDal());
+
+            foreach (var cars in carsManager.GetAll())
+            {
+                Console.WriteLine(cars.Description);
+            }
+            
         }
     }
 }
