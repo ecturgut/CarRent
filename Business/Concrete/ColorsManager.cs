@@ -14,12 +14,18 @@ namespace Business.Concrete
         {
             _colorsDal = colorsDal;
         }
-        public List<Colors> GetAll()
+
+        public void Add(Colors color)
+        {
+            _colorsDal.Add(color);
+        }
+
+        public List<Colors> GetAllColors()
         {
             return _colorsDal.GetAll();
         }
 
-        public Colors GetCarsByColorId(int colorId)
+        public Colors GetColorById(int colorId)
         {
             return _colorsDal.Get(c=> c.Id == colorId);
         }

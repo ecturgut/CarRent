@@ -20,9 +20,16 @@ namespace Business.Concrete
             return _CarsDal.GetAll();
         }
 
-        public List<Cars> GetAllByBrandId(int id)
+        public List<Cars> GetCarsByBrandId(int id)
         {
-            return _CarsDal.GetAll(p=>p.BrandId==id);
+            var GetCarBrand = _CarsDal.GetAll(p=>p.BrandId==id);
+            return GetCarBrand;
+        }
+
+        public List<Cars> GetCarsByColordId(int id)
+        {
+            var GetCarId = _CarsDal.GetAll(p => p.ColorId == id);
+            return GetCarId;
         }
 
         public List<Cars> GetByDailyPrice(int min, int max)
@@ -32,7 +39,22 @@ namespace Business.Concrete
 
         public List<CarsDetailDto> GetCarsDetails()
         {
-            return _CarsDal.GetCarsDetails();
+            var result = _CarsDal.GetCarsDetails();
+            return result;
         }
+
+        public void Add(Cars car)
+        {
+            if (car.Description.Length>2 && car.DailyPrice > 0 )
+            {
+                _CarsDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Bir hata oluştu.");
+            }
+        }
+
+      
     }
 }
