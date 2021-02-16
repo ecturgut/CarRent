@@ -12,9 +12,9 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-6B6RG50\SQLEXPRESS;Database=CarRent;Trusted_Connection=true");
         }
-            public DbSet<Cars> Cars { get; set; }
-            public DbSet<Brands> Brands { get; set; }
-            public DbSet<Colors> Colors { get; set; }
+            public DbSet<Car> Cars { get; set; }
+            public DbSet<Brand> Brands { get; set; }
+            public DbSet<Color> Colors { get; set; }
     }
 }
 

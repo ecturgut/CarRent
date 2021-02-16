@@ -7,25 +7,25 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class BrandsManager : IBrandsService
+    public class BrandManager : IBrandService
     {
-        IBrandsDal _brandsDal;
-        public BrandsManager(IBrandsDal brandsDal)
+        IBrandDal _brandsDal;
+        public BrandManager(IBrandDal brandsDal)
         {
             _brandsDal = brandsDal;
         }
 
-        public void Add(Brands brand)
+        public void Add(Brand brand)
         {
             _brandsDal.Add(brand); 
         }
 
-        public List<Brands> GetAllBrands()
+        public List<Brand> GetAllBrands()
         {
             return _brandsDal.GetAll();
         }
 
-        public Brands GetCarBransBydId(int brandId)
+        public Brand GetCarBransBydId(int brandId)
         {
             var result=  _brandsDal.Get(b => b.Id == brandId);
             return result;        }

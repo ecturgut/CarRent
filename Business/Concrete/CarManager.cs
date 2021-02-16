@@ -8,31 +8,31 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarsManager : ICarsService
+    public class CarManager : ICarService
     {
-        ICarsDal _CarsDal;
-        public CarsManager(ICarsDal carsDal)
+        ICarDal _CarsDal;
+        public CarManager(ICarDal carsDal)
         {
             _CarsDal = carsDal;
         }
-        public List<Cars> GetAll()
+        public List<Car> GetAll()
         {
             return _CarsDal.GetAll();
         }
 
-        public List<Cars> GetCarsByBrandId(int id)
+        public List<Car> GetCarsByBrandId(int id)
         {
             var GetCarBrand = _CarsDal.GetAll(p=>p.BrandId==id);
             return GetCarBrand;
         }
 
-        public List<Cars> GetCarsByColordId(int id)
+        public List<Car> GetCarsByColordId(int id)
         {
             var GetCarId = _CarsDal.GetAll(p => p.ColorId == id);
             return GetCarId;
         }
 
-        public List<Cars> GetByDailyPrice(int min, int max)
+        public List<Car> GetByDailyPrice(int min, int max)
         {
             return _CarsDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max);
         }
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return result;
         }
 
-        public void Add(Cars car)
+        public void Add(Car car)
         {
             if (car.Description.Length>2 && car.DailyPrice > 0 )
             {

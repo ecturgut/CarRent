@@ -7,25 +7,25 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ColorsManager : IColorsService
+    public class ColorManager : IColorService
     {
-        IColorsDal _colorsDal;
-        public ColorsManager(IColorsDal colorsDal)
+        IColorDal _colorsDal;
+        public ColorManager(IColorDal colorsDal)
         {
             _colorsDal = colorsDal;
         }
 
-        public void Add(Colors color)
+        public void Add(Color color)
         {
             _colorsDal.Add(color);
         }
 
-        public List<Colors> GetAllColors()
+        public List<Color> GetAllColors()
         {
             return _colorsDal.GetAll();
         }
 
-        public Colors GetColorById(int colorId)
+        public Color GetColorById(int colorId)
         {
             return _colorsDal.Get(c=> c.Id == colorId);
         }
