@@ -58,7 +58,6 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-
         public void Update(Car cars)
         {
             Car carsToUpdate = _cars.SingleOrDefault(p => p.Id == cars.Id);

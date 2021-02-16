@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6B6RG50\SQLEXPRESS;Database=CarRent;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-6B6RG50\SQLEXPRESS;Database=CarRent;User Id=sa;Password=29041998;");
         }
             public DbSet<Car> Cars { get; set; }
             public DbSet<Brand> Brands { get; set; }
