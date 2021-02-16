@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -37,24 +38,26 @@ namespace Business.Concrete
             return _CarsDal.GetAll(p => p.DailyPrice >= min && p.DailyPrice <= max);
         }
 
-        public List<CarsDetailDto> GetCarsDetails()
+        public List<CarsDetailDto> GetCarDetails()
         {
-            var result = _CarsDal.GetCarsDetails();
+            var result = _CarsDal.GetCarDetails();
             return result;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
             if (car.Description.Length>2 && car.DailyPrice > 0 )
             {
-                _CarsDal.Add(car);
+                
+                return new ErrorResult("Araba ismi en az 2 karakterden oluşmalıdır.");
             }
-            else
-            {
-                Console.WriteLine("Bir hata oluştu.");
-            }
+            _CarsDal.Add(car);
+            return new SuccessResult("Araba eklendi.");
         }
 
-      
+        public Car GetById(int carId)
+        {
+            return _CarsDal.Get(c=>c.Id == carId);
+        }
     }
 }
