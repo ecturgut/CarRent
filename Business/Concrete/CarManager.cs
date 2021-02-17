@@ -12,25 +12,26 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
+
         ICarDal _CarsDal;
+
         public CarManager(ICarDal carsDal)
         {
             _CarsDal = carsDal;
         }
+
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 21)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
-
             return new SuccessDataResult<List<Car>>(_CarsDal.GetAll(), Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
             return new SuccessDataResult<List<Car>>(_CarsDal.GetAll(p => p.BrandId == id));
-
         }
 
         public IDataResult<Car> GetById(int carId)
