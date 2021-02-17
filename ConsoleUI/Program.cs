@@ -9,12 +9,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //ColorTest();
             //BrandTest();
         }
 
-        private static void BrandTest()
+        /*private static void BrandTest()
         {
             BrandManager brandsManager = new BrandManager(new EfBrandDal());
             foreach (var brand in brandsManager.GetAllBrands())
@@ -47,7 +47,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
-            
+           */ 
         }
     }
-}
