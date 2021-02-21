@@ -60,11 +60,12 @@ namespace Business.Concrete
         {
             if (car.Description.Length > 2 && car.DailyPrice > 0)
             {
-                return new ErrorResult(Messages.CarNameInvalid);
+               _CarsDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
+                
             }
-            _CarsDal.Add(car);
-
-            return new SuccessResult(Messages.CarAdded);
+            
+            return new ErrorResult(Messages.CarNameInvalid);
         }
         public IResult Update(Car car)
         {
