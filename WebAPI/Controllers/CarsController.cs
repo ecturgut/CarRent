@@ -15,12 +15,29 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        private ICarService _carService;
+
+        public CarsController(ICarService carService)
         {
-            ICarService carService = new CarManager(new EfCarDal());
-            var result = carService.GetAll();
-            return result.Message;
+            _carService = carService;
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {      
+            var result = _carService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        //[HttpPost]
+        //public IActionResult Add(Car car)
+        //{
+        //    var result = _carService.Add(car);
+        //    return result.Success.ToString);
+        //}
     }
 }
