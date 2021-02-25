@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,6 +18,7 @@ namespace Business.Concrete
             _colorsDal = colorDal;
         }
 
+        
         public IResult Add(Color color)
         {
             _colorsDal.Add(color);
@@ -29,6 +31,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorDeleted);
         }
 
+        
         public IResult Update(Color color)
         {
             _colorsDal.Update(color);
