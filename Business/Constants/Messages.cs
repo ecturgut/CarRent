@@ -33,5 +33,7 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk güncelendi.";
         public static string ColorsListed = "Renkler listelendi.";
         public static string RentalError = "Bir hata oluştu.";
+        public static string CarImageAdded="Araba resmi eklendi.";
+        public static string ImageLimitFull="Araba resim ekleme limiti doldu.";
     }
 }
