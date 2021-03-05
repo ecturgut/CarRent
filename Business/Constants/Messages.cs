@@ -35,5 +35,12 @@ namespace Business.Constants
         public static string RentalError = "Bir hata oluştu.";
         public static string CarImageAdded="Araba resmi eklendi.";
         public static string ImageLimitFull="Araba resim ekleme limiti doldu.";
+        public static string UserAlreadyExists="Kullanıcı zaten mevcut.";
+        public static string SuccessfulLogin="Giriş başarılı.";
+        public static string PasswordError="Şifre hatası.";
+        public static string UserNotFound="Kullanıcı bulunamadı.";
+        public static string AccessTokenCreated="Giriş Tokeni Oluşturuldu.";
+        public static string UserRegistered="Kullanıcı başarıyla kaydedildi.";
+        public static string AllUserListed="Tüm kullanıcılar listelenmiştir.";
     }
 }
