@@ -1,8 +1,8 @@
 ﻿using Business.Abstract;
+using Core.Utilities.FileUploads;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,72 +14,65 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarImagesController : ControllerBase
     {
-        ICarImageService _ımageService;
-        public CarImagesController(ICarImageService ımageService)
+        ICarImageService _carImageService;
+        public CarImagesController(ICarImageService carImageService)
         {
-            _ımageService = ımageService;
+            _carImageService = carImageService;
         }
+
+
         [HttpPost("add")]
-        public IActionResult Add([FromForm(Name = ("Image"))] IFormFile formFile, [FromForm] CarImage carImage)
+        public IActionResult Add([FromForm] FileTools file, [FromForm] CarImage carImage)
         {
-            var result = _ımageService.Add(formFile, carImage);
+
+            var result = _carImageService.Add(file, carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpPost("Delete")]
-        public IActionResult Delete(CarImage carImage)
+        [HttpPost("delete")]
+        public IActionResult Delete([FromForm] CarImage carImage)
         {
-            var result = _ımageService.Delete(carImage);
+            var result = _carImageService.Delete(carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpPost("Update")]
-        public IActionResult Update([FromForm] IFormFile formFile, CarImage carImage)
+        [HttpPost("update")]
+        public IActionResult Update([FromForm] FileTools file, [FromForm] CarImage carImage)
         {
-            var result = _ımageService.Update(formFile, carImage);
+            var result = _carImageService.Update(file, carImage);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("get")]
-        public IActionResult Get(int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetAllByCarId(int id)
         {
-            var result = _ımageService.Get(id);
+            var result = _carImageService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
             }
+
             return BadRequest(result);
         }
-        [HttpGet("getAll")]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _ımageService.GetAll();
+            var result = _carImageService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result);
-        }
-        [HttpGet("getImagesById")]
-        public IActionResult GetImagesByCarId(int id)
-        {
-            var result = _ımageService.GetImagesByCarId(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
 
+            return BadRequest(result);
         }
     }
 }
-

@@ -5,17 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using Core.DataAccess.EntitiyFramework;
+using Core.DataAccess.EntityFramework;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetRentalDetails()
+        public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
             using (CarRentContext context = new CarRentContext())
             {
-                var result =from r in context.Rentals
+                var result = from r in context.Rentals
                              join c in context.Customers
                              on r.CustomerId equals c.Id
                              join u in context.Users
@@ -36,7 +37,4 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
     }
-
-
-
 }

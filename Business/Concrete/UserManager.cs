@@ -1,8 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,57 +14,48 @@ namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
-        IUserDal _usersDal;
-        public UserManager(IUserDal usersDal)
+        IUserDal _userDal;
+        public UserManager(IUserDal userDal)
         {
-            _usersDal = usersDal;
+            _userDal = userDal;
         }
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
-            _usersDal.Add(user);
+            _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
         }
 
         public IResult Delete(User user)
         {
-            _usersDal.Delete(user);
+            _userDal.Delete(user);
             return new SuccessResult(Messages.UserDeleted);
-        }
-
-        public IResult Update(User user)
-        {
-            _usersDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
-        }
-
-        public IDataResult<List<User>> GetAllUser()
-        {
-            return new SuccessDataResult<List<User>>(_usersDal.GetAll(), Messages.UsersListed);
-        }
-
-        public IDataResult<User> GetUserById(int userId)
-        {
-            return new SuccessDataResult<User>(_usersDal.Get(u => u.Id == userId));
-        }
-
-        public IDataResult<User> GetByMail(string email)
-        {
-            return new SuccessDataResult<User>(_usersDal.Get(u => u.Email == email));
-        }
-
-        public IDataResult<List<OperationClaim>> GetClaims(User user)
-        {
-            return new SuccessDataResult<List<OperationClaim>>(_usersDal.GetClaims(user));
         }
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_usersDal.GetAll(), Messages.AllUserListed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
         }
 
         public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<User>(_usersDal.Get(u => u.Id == id));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id), Messages.UsersListed);
+        }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult(Messages.UserUpdated);
+        }
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            var getClaims = _userDal.GetClaims(user);
+            return new SuccessDataResult<List<OperationClaim>>(getClaims);
+        }
+        public IDataResult<User> GetByMail(string email)
+        {
+            var getByMail = _userDal.Get(u => u.Email == email);
+            return new SuccessDataResult<User>(getByMail);
         }
     }
 }

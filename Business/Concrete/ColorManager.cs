@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -12,40 +11,38 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
-        IColorDal _colorsDal;
+        IColorDal _colorDal;
         public ColorManager(IColorDal colorDal)
         {
-            _colorsDal = colorDal;
+            _colorDal = colorDal;
         }
-
-        
         public IResult Add(Color color)
         {
-            _colorsDal.Add(color);
+            _colorDal.Add(color);
+
             return new SuccessResult(Messages.ColorAdded);
         }
 
         public IResult Delete(Color color)
         {
-            _colorsDal.Delete(color);
+            _colorDal.Delete(color);
             return new SuccessResult(Messages.ColorDeleted);
-        }
-
-        
-        public IResult Update(Color color)
-        {
-            _colorsDal.Update(color);
-            return new SuccessResult(Messages.ColorUpdated);
         }
 
         public IDataResult<List<Color>> GetAllColors()
         {
-            return new SuccessDataResult<List<Color>>(_colorsDal.GetAll(), Messages.ColorsListed);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorsListed);
         }
 
         public IDataResult<Color> GetColorById(int colorId)
         {
-            return new SuccessDataResult<Color>(_colorsDal.Get(b => b.Id == colorId));
+            return new SuccessDataResult<Color>(_colorDal.Get(o => o.Id == colorId));
+        }
+
+        public IResult Update(Color color)
+        {
+            _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace DataAccess.Concrete.InMemory
            return _cars.Where(p => p.Id == id).ToList();
         }
 
-        public List<CarsDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }
@@ -67,6 +67,11 @@ namespace DataAccess.Concrete.InMemory
             carsToUpdate.Description = cars.Description;
             carsToUpdate.DailyPrice = cars.DailyPrice;
             carsToUpdate.ModelYear = cars.ModelYear;
+        }
+
+        List<CarDetailDto> ICarDal.GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }
