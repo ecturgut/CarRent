@@ -9,76 +9,83 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(template:"api/[controller]")]
     [ApiController]
     public class RentalsController : ControllerBase
     {
+
         IRentalService _rentalService;
         public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
-        [HttpPost("add")]
+
+        [HttpPost(template:"add")]
         public IActionResult Add(Rental rental)
         {
             var result = _rentalService.Add(rental);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
-        [HttpPost("delete")]
+
+        [HttpPost(template:"delete")]
         public IActionResult Delete(Rental rental)
         {
             var result = _rentalService.Delete(rental);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpPut("update")]
+
+        [HttpPost(template:"update")]
         public IActionResult Update(Rental rental)
         {
             var result = _rentalService.Update(rental);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
-        [HttpGet("getall")]
+
+        [HttpGet(template:"getall")]
         public IActionResult GetAll()
         {
             var result = _rentalService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _rentalService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
             return BadRequest(result);
         }
+
         [HttpGet("getdetail")]
         public IActionResult GetDetail()
         {
             var result = _rentalService.GetRentalDetailDtos();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
     }
 }

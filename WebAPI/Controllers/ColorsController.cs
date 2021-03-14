@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(template:"api/[controller]")]
     [ApiController]
     public class ColorsController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _colorService = colorService;
         }
 
-        [HttpGet("getallcolors")]
+        [HttpGet(template:"getallcolors")]
         public IActionResult GetAllColors()
         {
             var result = _colorService.GetAllColors();
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcolorbyid")]
+        [HttpGet(template:"getcolorbyid")]
         public IActionResult GetColorById(int id)
         {
             var result = _colorService.GetColorById(id);
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
+        [HttpPost(template:"add")]
         public IActionResult Add(Color color)
         {
             var result = _colorService.Add(color);
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPost(template:"update")]
         public IActionResult Update(Color color)
         {
             var result = _colorService.Update(color);
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpPost(template:"delete")]
         public IActionResult Delete(Color color)
         {
             var result = _colorService.Delete(color);

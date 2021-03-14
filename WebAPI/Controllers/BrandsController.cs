@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(template:"api/[controller]")]
     [ApiController]
     public class BrandsController : Controller
     {
@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
             _brandService = brandService;
         }
 
-        [HttpGet("getallbrands")]
+        [HttpGet(template:"getallbrands")]
         public IActionResult GetAll()
         {
             var result = _brandService.GetAllBrands();
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
+        [HttpGet(template:"getbyid")]
         public IActionResult GetBransBydId(int id)
         {
             var result = _brandService.GetBransBydId(id);
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
+        [HttpPost(template:"add")]
         public IActionResult Add(Brand brand)
         {
             var result = _brandService.Add(brand);
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPost(template:"update")]
         public IActionResult Update(Brand brand)
         {
             var result = _brandService.Update(brand);
@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpPost(template:"delete")]
         public IActionResult Delete(Brand brand)
         {
             var result = _brandService.Delete(brand);

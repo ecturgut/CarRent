@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(template:"api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _customerService = customerService;
         }
 
-        [HttpGet("getall")]
+        [HttpGet(template:"getall")]
         public IActionResult GetAll()
         {
             var result = _customerService.GetAll();
@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
+        [HttpGet(template:"getbyid")]
         public IActionResult GetCustomerById(int customerId)
         {
             var result = _customerService.GetById(customerId);
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
+        [HttpPost(template:"add")]
         public IActionResult Add(Customer customer)
         {
             var result = _customerService.Add(customer);
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("update")]
+        [HttpPost(template:"update")]
         public IActionResult Update(Customer customer)
         {
             var result = _customerService.Update(customer);
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpPost(template:"delete")]
         public IActionResult Delete(Customer customer)
         {
             var result = _customerService.Delete(customer);
