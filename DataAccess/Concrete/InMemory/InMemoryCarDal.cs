@@ -14,13 +14,13 @@ namespace DataAccess.Concrete.InMemory
         List<Car> _cars;
         public InMemoryCarDal()
         {
-            _cars = new List<Car> {
-                new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=250,ModelYear=2021,Description="Günlük kiralık BMW"},
-                new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=350,ModelYear=2021,Description="Günlük kiralık Mercedes"},
-                new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=450,ModelYear=2021,Description="Günlük kiralık Lamborghini"},
-                new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=490,ModelYear=2021,Description="Günlük kiralık Aston Martin"},
-                new Car {Id=5,BrandId=5,ColorId=5,DailyPrice=550,ModelYear=2021,Description="Günlük kiralık Bentley"}
-            };
+            //_cars = new List<Car> {
+            //    new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=250,ModelYear=2021,CarName="Günlük kiralık BMW"},
+            //    new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=350,ModelYear=2021,CarName="Günlük kiralık Mercedes"},
+            //    new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=450,ModelYear=2021,CarName="Günlük kiralık Lamborghini"},
+            //    new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=490,ModelYear=2021,CarName="Günlük kiralık Aston Martin"},
+            //    new Car {Id=5,BrandId=5,ColorId=5,DailyPrice=550,ModelYear=2021,CarName="Günlük kiralık Bentley"}
+            //};
         }
         public void Add(Car cars)
         {
@@ -64,7 +64,7 @@ namespace DataAccess.Concrete.InMemory
             carsToUpdate.Id = cars.Id;
             carsToUpdate.BrandId = cars.BrandId;
             carsToUpdate.ColorId = cars.ColorId;
-            carsToUpdate.Description = cars.Description;
+            carsToUpdate.CarName = cars.CarName;
             carsToUpdate.DailyPrice = cars.DailyPrice;
             carsToUpdate.ModelYear = cars.ModelYear;
         }

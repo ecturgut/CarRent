@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAllUsers();
+            var result = _userService.GetAll();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _userService.GetByUserId(id);
+            var result = _userService.GetById(id);
             if (result.Success)
             {
                 return Ok(result.Data);
