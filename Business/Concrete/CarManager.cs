@@ -18,7 +18,6 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-
         ICarDal _carDal;
         public CarManager(ICarDal carDal)
         {
@@ -29,18 +28,14 @@ namespace Business.Concrete
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
-
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
-
-
         }
+
         [TransactionScopeAspect]
         public IResult AddTransactionalTest(Car car)
         {
             _carDal.Add(car);
-
-
             _carDal.Delete(car);
             return new SuccessResult(Messages.TransactionTested);
         }
@@ -49,28 +44,41 @@ namespace Business.Concrete
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
-
         }
+
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
+
         [CacheAspect]
         public IDataResult<Car> GetById(int carId)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == carId));
         }
 
+        public IDataResult<List<CarDetailDto>> GetByBrandId(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == id));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetByColorId(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == id));
+        }
+
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
+
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+
     }
 }

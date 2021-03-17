@@ -6,12 +6,13 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Core.DataAccess.EntityFramework;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarRentContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             using (CarRentContext context = new CarRentContext())
             {
