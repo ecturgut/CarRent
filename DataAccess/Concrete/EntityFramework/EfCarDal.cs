@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (CarRentContext context = new CarRentContext())
             {
-                var result = from c in context.Cars
+                var result = from c in filter== null? context.Cars : context.Cars.Where(filter)
                              join b in context.Brands
                              on c.BrandId equals b.Id
                              join o in context.Colors
@@ -31,6 +31,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  BrandName = b.Name,
                                  ColorName = o.Name,
                                  DailyPrice = c.DailyPrice,
+                                 ModelYear = c.ModelYear,
 
                              };
                 return result.ToList();

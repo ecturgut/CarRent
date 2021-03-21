@@ -46,6 +46,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ImageDeleted);
 
         }
+
         public IResult Update(FileTools file, CarImage carImage)
         {
             var result = _carImageDal.Get(c => c.Id == carImage.Id);
@@ -55,9 +56,6 @@ namespace Business.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
-
-
-
 
         public IDataResult<List<CarImage>> GetAll()
         {
@@ -77,10 +75,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(b => b.Id == id));
         }
 
-
-
-
-
         private IResult CheckCarIMageAmount(int CarId)
         {
             var result = _carImageDal.GetAll(c => c.CarId == CarId);
@@ -91,7 +85,6 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
-
         }
 
     }
