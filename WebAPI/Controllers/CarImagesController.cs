@@ -53,9 +53,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet(template:"getbyid")]
-        public IActionResult GetByCarId(int id)
+        public IActionResult GetByCarId(int carId)
         {
-            var result = _carImageService.GetById(id);
+            var result = _carImageService.GetById(carId);
             if (result.Success)
             {
                 return Ok(result);

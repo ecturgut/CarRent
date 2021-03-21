@@ -64,15 +64,15 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetById(int id)
         {
-            var result = _carImageDal.Get(c => c.Id == id);
-            if (result.ImagePath == null)
+            var result = _carImageDal.GetAll(c => c.CarId == id);
+            if (result == null)
             {
                 List<CarImage> Cimage = new List<CarImage>();
                 Cimage.Add(new CarImage { CarId = id, ImagePath = @"\images\Default.jpg" });
                 return new SuccessDataResult<List<CarImage>>(Cimage);
 
             }
-            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(b => b.Id == id));
+            return new SuccessDataResult<List<CarImage>>(result);
         }
 
         private IResult CheckCarIMageAmount(int CarId)
