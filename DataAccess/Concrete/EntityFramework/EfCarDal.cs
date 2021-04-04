@@ -32,12 +32,14 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = o.Name,
                                  DailyPrice = c.DailyPrice,
                                  ModelYear = c.ModelYear,
-
+                                 Images =  (from i in context.CarImages where i.CarId == c.Id select i.ImagePath).ToList(),
                              };
+
                 return result.ToList();
 
 
             }
+
         }
     }
 }
