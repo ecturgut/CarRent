@@ -17,18 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Images\beyazAccent.jpg" />
     <None Include="wwwroot\Images\default.jpg" />
-    <None Include="wwwroot\Images\kırmızıPeugeot.jpg" />
-    <None Include="wwwroot\Images\maviClio.jpg" />
+    <None Include="wwwroot\Images\maviClioOn.jpg" />
     <None Include="wwwroot\Images\sarıCivic.jpg" />
     <None Include="wwwroot\Images\sarıOpel.jpg" />
-    <None Include="wwwroot\Images\siyahFiesta.jpg" />
-    <None Include="wwwroot\Images\siyahMicra.jpg" />
+    <None Include="wwwroot\Images\siyahFiestaOn.jpg" />
     <None Include="wwwroot\Images\turuncuMicra.jpg" />
   </ItemGroup>
 
